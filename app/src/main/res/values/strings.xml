@@ -14,4 +14,6 @@
     <string name="oops">Oops</string>
     <string name="check_answers">CHECK YOUR ANSWERS BECAUSE THERE IS SOMETHING WRONG</string>
     <string name="ok">OK</string>
+    <string name="correct">CORRECT</string>
+    <string name="incorrect">INCORRECT</string>
 </resources>

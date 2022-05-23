@@ -8,8 +8,12 @@ data class PuzzleViewState(
     val puzzle: Puzzle?,
     val isHintByAdAvailable: Boolean = false,
     val message: UiMessage<PuzzleUiMessage>?,
+    val isAnswerCorrectVisible: Boolean = false,
+    val isAnswerInCorrectVisible: Boolean = false,
 ) {
+
     companion object {
+
         val Test = PuzzleViewState(
             message = null,
             puzzle = null

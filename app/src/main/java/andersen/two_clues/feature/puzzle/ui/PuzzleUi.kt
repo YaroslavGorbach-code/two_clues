@@ -1,6 +1,7 @@
 package andersen.two_clues.feature.puzzle.ui
 
 import andersen.two_clues.R
+import andersen.two_clues.feature.common.ui.theme.getOnBackgroundColor
 import andersen.two_clues.feature.puzzle.model.PuzzleAction
 import andersen.two_clues.feature.puzzle.model.PuzzleUiMessage
 import andersen.two_clues.feature.puzzle.model.PuzzleViewState
@@ -9,13 +10,23 @@ import andersen.two_clues.utills.UiMessage
 import andersen.two_clues.utills.findActivity
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.HighlightOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment.Companion.TopEnd
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -84,7 +95,95 @@ internal fun PuzzleUi(
     }
 
     Surface(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+            ) {
+                Icon(
+                    Icons.Default.ArrowBack,
+                    contentDescription = "",
+                    modifier = Modifier
+                        .size(40.dp)
+                        .padding(start = 8.dp)
+                        .align(Alignment.CenterVertically)
+                        .clickable { onBack() }
+                )
 
+                Text(
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .weight(1f)
+                        .padding(start = 16.dp),
+                    text = stringResource(
+                        id =
+                        state.puzzle?.name?.resId ?: R.string.app_name
+                    ),
+                    style = MaterialTheme.typography.caption
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(0.5f)
+                    .padding(16.dp)
+                    .background(getOnBackgroundColor(), RoundedCornerShape(4))
+            ) {
+                Text(
+                    text = "1 of 25",
+                    modifier = Modifier
+                        .align(TopEnd)
+                        .padding(8.dp),
+                    style = MaterialTheme.typography.caption,
+                    fontSize = 16.sp
+                )
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Column(
+                modifier = Modifier
+                    .weight(0.5f)
+                    .fillMaxWidth()
+            ) {
+                if (state.isAnswerCorrectVisible) {
+                    Box(Modifier.fillMaxWidth()) {
+                        Row(modifier = Modifier.align(Center)) {
+                            Text(
+                                text = stringResource(id = R.string.correct),
+                                style = MaterialTheme.typography.body2
+                            )
+                            Icon(
+                                Icons.Default.CheckCircle,
+                                contentDescription = "",
+                                tint = Color.Green,
+                                modifier = Modifier.size(18.dp)
+                            )
+                        }
+                    }
+
+                }
+
+                if (state.isAnswerInCorrectVisible) {
+                    Box(Modifier.fillMaxWidth()) {
+                        Row(modifier = Modifier.align(Center)) {
+                            Text(
+                                text = stringResource(id = R.string.incorrect),
+                                style = MaterialTheme.typography.body2
+                            )
+                            Icon(
+                                Icons.Default.HighlightOff,
+                                contentDescription = "",
+                                tint = Color.Red,
+                                modifier = Modifier.size(18.dp)
+                            )
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
