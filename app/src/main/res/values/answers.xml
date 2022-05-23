@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="task_answers_letter_a">
+        <item>Airport</item>
+        <item>Albert</item>
+        <item>Anagram</item>
+        <item>Angle</item>
+        <item>Apple</item>
+        <item>Architect</item>
+        <item>Audi</item>
+        <item>Arena</item>
+        <item>Adam</item>
+        <item>Astronaut</item>
+        <item>Address</item>
+        <item>Almanac</item>
+        <item>Anthem</item>
+        <item>Assassin</item>
+        <item>Aunt</item>
+        <item>Abbreviation</item>
+        <item>Annie</item>
+        <item>Author</item>
+        <item>Airplane</item>
+        <item>Avenger</item>
+        <item>Announcer</item>
+        <item>Angela</item>
+    </string-array>
+</resources>
