@@ -4,7 +4,7 @@ import andersen.two_clues.data.common.model.PuzzleName
 import andersen.two_clues.data.puzzles.model.PuzzleItem
 
 class PuzzlesFactory(
-    private val puzzleStoryProvider: PuzzleStoryProvider,
+    private val puzzleDescriptionProvider: PuzzleDescriptionProvider,
     private val puzzleAvailabilityProvider: PuzzleAvailabilityProvider,
     private val puzzleCompleteProvider: PuzzleCompleteProvider
 ) {
@@ -14,7 +14,7 @@ class PuzzlesFactory(
         return names.map { name ->
             PuzzleItem(
                 name = name,
-                description = puzzleStoryProvider.provide(name),
+                description = puzzleDescriptionProvider.provide(name),
                 isAvailable = puzzleAvailabilityProvider.isAvailable(name),
                 isCompleted = puzzleCompleteProvider.isCompleted(name)
             )

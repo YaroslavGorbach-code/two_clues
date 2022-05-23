@@ -3,7 +3,7 @@ package andersen.two_clues.data.puzzle.mapper
 import andersen.two_clues.data.puzzle.model.Puzzle
 import java.util.*
 
-class AnswerToLettersMapper {
+class AnswerToLettersMapper() {
 
     companion object {
         private const val DEFAULT_LETTERS_SIZE = 16

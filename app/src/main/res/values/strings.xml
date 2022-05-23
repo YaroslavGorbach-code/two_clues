@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Two clues</string>
+    <string name="app_description">Train your logic
+        by guessing what is the hidden word using only two clues.</string>
+    <string name="view_ads">VIEW ADS</string>
+    <string name="puzzle_is_unavailable">Puzzle is not available</string>
+    <string name="puzzle_is_unavailable_explanation">Get access by viewing ads or complete the previous puzzle successfully</string>
+    <string name="check_answer">CHECK ANSWER</string>
+    <string name="get_answers">GET ANSWERS BY VIEWING ADS</string>
+    <string name="show_answers">SHOW ANSWERS</string>
+    <string name="correct_answers">CORRECT ANSWERS</string>
+    <string name="congratulations">CONGRATULATIONS</string>
+    <string name="you_completed_puzzle">YOU WIN!</string>
+    <string name="oops">Oops</string>
+    <string name="check_answers">CHECK YOUR ANSWERS BECAUSE THERE IS SOMETHING WRONG</string>
+    <string name="ok">OK</string>
 </resources>

@@ -12,7 +12,7 @@ import andersen.two_clues.data.puzzles.PuzzleDataStore
 import andersen.two_clues.data.puzzles.PuzzleDataStoreImp
 import andersen.two_clues.data.puzzles.factory.PuzzleAvailabilityProvider
 import andersen.two_clues.data.puzzles.factory.PuzzleCompleteProvider
-import andersen.two_clues.data.puzzles.factory.PuzzleStoryProvider
+import andersen.two_clues.data.puzzles.factory.PuzzleDescriptionProvider
 import andersen.two_clues.data.puzzles.factory.PuzzlesFactory
 import andersen.two_clues.utills.AdManager
 import android.app.Application
@@ -39,16 +39,6 @@ object DataPuzzleModule {
     @Provides
     fun providePuzzleCompleteDataStore(puzzleDataStore: PuzzleDataStore): PuzzleCompleteProvider {
         return PuzzleCompleteProvider(puzzleDataStore)
-    }
-
-    @Provides
-    fun providePuzzleAnswerToLetterMapper(): AnswerToLettersMapper {
-        return AnswerToLettersMapper()
-    }
-
-    @Provides
-    fun provideTaskClueResIdProvider(): TaskCuesResIdProvider {
-        return TaskCuesResIdProvider()
     }
 
     @Provides
@@ -82,6 +72,7 @@ object DataPuzzleModule {
         return PuzzleFactory(tasksFactory)
     }
 
+    @Provides
     fun provideTaskResIdProvider(): TaskCuesResIdProvider {
         return TaskCuesResIdProvider()
     }
@@ -97,13 +88,18 @@ object DataPuzzleModule {
     }
 
     @Provides
+    fun providePuzzleStoryProvider(context: Application): PuzzleDescriptionProvider {
+        return PuzzleDescriptionProvider(context)
+    }
+
+    @Provides
     fun providePuzzlesFactory(
-        storyProvider: PuzzleStoryProvider,
+        storyProvider: PuzzleDescriptionProvider,
         puzzleAvailabilityProvider: PuzzleAvailabilityProvider,
         puzzleCompleteProvider: PuzzleCompleteProvider
     ): PuzzlesFactory {
         return PuzzlesFactory(
-            puzzleStoryProvider = storyProvider,
+            puzzleDescriptionProvider = storyProvider,
             puzzleAvailabilityProvider = puzzleAvailabilityProvider,
             puzzleCompleteProvider = puzzleCompleteProvider
         )

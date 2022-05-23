@@ -1,6 +1,8 @@
 package andersen.two_clues
 
 import andersen.two_clues.data.common.model.PuzzleName
+import andersen.two_clues.feature.puzzle.ui.PuzzleUi
+import andersen.two_clues.feature.puzzles.ui.PuzzlesUi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
@@ -72,14 +74,14 @@ private fun NavGraphBuilder.addPuzzles(
     root: Screen,
 ) {
     composable(LeafScreen.Puzzles.createRoute(root)) {
-//        PuzzlesUi { name ->
-//            navController.navigate(
-//                LeafScreen.Puzzle.createRoute(
-//                    root = root,
-//                    puzzleName = name
-//                )
-//            )
-//        }
+        PuzzlesUi { name ->
+            navController.navigate(
+                LeafScreen.Puzzle.createRoute(
+                    root = root,
+                    puzzleName = name
+                )
+            )
+        }
     }
 }
 
@@ -95,9 +97,9 @@ private fun NavGraphBuilder.addPuzzle(
                 type = NavType.EnumType(PuzzleName::class.java)
             })
     ) { backStackEntry ->
-//        PuzzleUi {
-//            navController.popBackStack()
-//        }
+        PuzzleUi {
+            navController.popBackStack()
+        }
     }
 }
 

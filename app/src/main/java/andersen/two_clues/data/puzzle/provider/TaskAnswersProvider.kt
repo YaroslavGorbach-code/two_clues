@@ -11,7 +11,7 @@ class TaskAnswersProvider(private val context: Context) {
 
     fun provide(name: PuzzleName): List<List<String>> {
         return when (name) {
-            PuzzleName.TEST -> context.resources.getStringArray(
+            PuzzleName.LETTER_A -> context.resources.getStringArray(
                 R.array.task_answers_letter_a
             ).toList().map { it.split(WORD_SPLIT_SYMBOL) }
         }

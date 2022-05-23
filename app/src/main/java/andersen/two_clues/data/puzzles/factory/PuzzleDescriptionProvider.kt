@@ -4,11 +4,11 @@ import andersen.two_clues.R
 import andersen.two_clues.data.common.model.PuzzleName
 import android.content.Context
 
-class PuzzleStoryProvider(private val context: Context) {
+class PuzzleDescriptionProvider(private val context: Context) {
 
     fun provide(puzzleName: PuzzleName): String {
         return when (puzzleName) {
-            PuzzleName.TEST -> context.resources.getString(R.string.app_name)
+            PuzzleName.LETTER_A -> context.resources.getString(R.string.letter_a_description)
         }
     }
 }

@@ -6,7 +6,7 @@ import andersen.two_clues.data.common.model.PuzzleName
 class TaskCuesResIdProvider {
     fun provide(name: PuzzleName): Int {
         return when (name) {
-            PuzzleName.TEST -> R.string.task_letter_a
+            PuzzleName.LETTER_A -> R.string.task_letter_a
         }
     }
 }
