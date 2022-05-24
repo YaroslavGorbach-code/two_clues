@@ -6,6 +6,7 @@ import andersen.two_clues.utills.UiMessage
 
 data class PuzzleViewState(
     val puzzle: Puzzle?,
+    val currentTask: Puzzle.Task? = null,
     val isHintByAdAvailable: Boolean = false,
     val message: UiMessage<PuzzleUiMessage>?,
     val isAnswerCorrectVisible: Boolean = false,

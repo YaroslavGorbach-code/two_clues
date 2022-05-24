@@ -11,6 +11,15 @@ val Pink200 = Color(0xFFE040FB)
 val LightBlue = Color(0xFF304FFE)
 
 @Composable
+fun getOnBackgroundColorLight(isDarkTheme: Boolean = isSystemInDarkTheme()): Color {
+    return if (isDarkTheme) {
+        Color(0xFF555555)
+    } else {
+        Color(0xFFF3F3F3)
+    }
+}
+
+@Composable
 fun getOnBackgroundColor(isDarkTheme: Boolean = isSystemInDarkTheme()): Color {
     return if (isDarkTheme) {
         Color(0xFF303030)

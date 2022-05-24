@@ -32,15 +32,19 @@ class PuzzleViewModel @Inject constructor(
 
     private var puzzle: MutableStateFlow<Puzzle?> = MutableStateFlow(null)
 
+    private var currentTask: MutableStateFlow<Puzzle.Task?> = MutableStateFlow(null)
+
     private val uiMessageManager: UiMessageManager<PuzzleUiMessage> = UiMessageManager()
 
     val state: StateFlow<PuzzleViewState> = combine(
         puzzle,
+        currentTask,
         uiMessageManager.message,
-    ) { puzzle, message ->
+    ) { puzzle, currentTask, message ->
         PuzzleViewState(
             puzzle = puzzle,
             message = message,
+            currentTask = currentTask
         )
     }.stateIn(
         scope = viewModelScope,
@@ -76,6 +80,28 @@ class PuzzleViewModel @Inject constructor(
 
                         }
                     }
+                    is PuzzleAction.ChoseLetter -> {
+                        currentTask.update { task ->
+                            if (task?.maxMyAnswerSize == task?.myAnswer?.size) {
+                                task
+                            } else {
+                                task?.copy(
+                                    myAnswer = task.myAnswer.toMutableList()
+                                        .apply { add(action.char) }
+                                )
+                            }
+                        }
+                    }
+                    is PuzzleAction.RemoveLetter -> {
+                        action.char?.let { char ->
+                            currentTask.update { task ->
+                                task?.copy(
+                                    myAnswer = task.myAnswer.toMutableList()
+                                        .apply { remove(char) }
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -84,7 +110,10 @@ class PuzzleViewModel @Inject constructor(
     private suspend fun loadPuzzle(name: PuzzleName) {
         puzzleRepo.getPuzzle(name)
             .flowOn(Dispatchers.IO)
-            .collect(puzzle::emit)
+            .collect { puzzle ->
+                this.puzzle.emit(puzzle)
+                currentTask.emit(puzzle.task[0])
+            }
     }
 
     fun submitAction(action: PuzzleAction) {

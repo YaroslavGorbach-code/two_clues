@@ -1,7 +1,10 @@
 package andersen.two_clues.feature.puzzle.ui
 
 import andersen.two_clues.R
+import andersen.two_clues.data.puzzle.model.Puzzle
 import andersen.two_clues.feature.common.ui.theme.getOnBackgroundColor
+import andersen.two_clues.feature.common.ui.theme.getOnBackgroundColorLight
+import andersen.two_clues.feature.common.ui.theme.getOnBackgroundHinted
 import andersen.two_clues.feature.puzzle.model.PuzzleAction
 import andersen.two_clues.feature.puzzle.model.PuzzleUiMessage
 import andersen.two_clues.feature.puzzle.model.PuzzleViewState
@@ -13,6 +16,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -96,48 +100,16 @@ internal fun PuzzleUi(
 
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(60.dp)
-            ) {
-                Icon(
-                    Icons.Default.ArrowBack,
-                    contentDescription = "",
-                    modifier = Modifier
-                        .size(40.dp)
-                        .padding(start = 8.dp)
-                        .align(Alignment.CenterVertically)
-                        .clickable { onBack() }
-                )
+            Toolbar(onBack, state)
 
-                Text(
-                    modifier = Modifier
-                        .align(Alignment.CenterVertically)
-                        .weight(1f)
-                        .padding(start = 16.dp),
-                    text = stringResource(
-                        id =
-                        state.puzzle?.name?.resId ?: R.string.app_name
-                    ),
-                    style = MaterialTheme.typography.caption
-                )
-            }
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(0.5f)
-                    .padding(16.dp)
-                    .background(getOnBackgroundColor(), RoundedCornerShape(4))
-            ) {
-                Text(
-                    text = "1 of 25",
-                    modifier = Modifier
-                        .align(TopEnd)
-                        .padding(8.dp),
-                    style = MaterialTheme.typography.caption,
-                    fontSize = 16.sp
+            state.currentTask?.let { task ->
+                Task(
+                    Modifier
+                        .fillMaxWidth()
+                        .weight(0.5f)
+                        .padding(16.dp)
+                        .background(getOnBackgroundColor(), RoundedCornerShape(4)),
+                    task
                 )
             }
 
@@ -148,42 +120,208 @@ internal fun PuzzleUi(
                     .weight(0.5f)
                     .fillMaxWidth()
             ) {
-                if (state.isAnswerCorrectVisible) {
-                    Box(Modifier.fillMaxWidth()) {
-                        Row(modifier = Modifier.align(Center)) {
-                            Text(
-                                text = stringResource(id = R.string.correct),
-                                style = MaterialTheme.typography.body2
-                            )
-                            Icon(
-                                Icons.Default.CheckCircle,
-                                contentDescription = "",
-                                tint = Color.Green,
-                                modifier = Modifier.size(18.dp)
-                            )
-                        }
+                Column(modifier = Modifier.weight(1f)) {
+                    if (state.isAnswerCorrectVisible) {
+                        AnswerCorrect()
                     }
 
+                    if (state.isAnswerInCorrectVisible) {
+                        AnswerIncorrect()
+                    }
+
+                    state.currentTask?.let { task ->
+                        AnswerLetters(Modifier.fillMaxWidth(), task, actioner)
+                        VariantLetters(
+                            Modifier.padding(top = 16.dp, start = 8.dp, end = 8.dp),
+                            task,
+                            actioner
+                        )
+                    }
                 }
 
-                if (state.isAnswerInCorrectVisible) {
-                    Box(Modifier.fillMaxWidth()) {
-                        Row(modifier = Modifier.align(Center)) {
-                            Text(
-                                text = stringResource(id = R.string.incorrect),
-                                style = MaterialTheme.typography.body2
-                            )
-                            Icon(
-                                Icons.Default.HighlightOff,
-                                contentDescription = "",
-                                tint = Color.Red,
-                                modifier = Modifier.size(18.dp)
-                            )
-                        }
+                BottomButtons(Modifier.padding(16.dp))
+            }
+        }
+    }
+}
+
+@Composable
+private fun BottomButtons(modifier: Modifier) {
+    Column(modifier = modifier) {
+        Button(
+            shape = RoundedCornerShape(8),
+            onClick = { }, modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = getOnBackgroundHinted())
+        ) {
+
+        }
+
+        Spacer(modifier = Modifier.size(8.dp))
+
+        Button(
+            shape = RoundedCornerShape(8),
+            onClick = { },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = getOnBackgroundColorLight())
+        ) {
+
+        }
+        Spacer(modifier = Modifier.size(8.dp))
+    }
+}
+
+@ExperimentalFoundationApi
+@Composable
+private fun VariantLetters(
+    modifier: Modifier,
+    task: Puzzle.Task,
+    actioner: (PuzzleAction) -> Unit
+) {
+    LazyVerticalGrid(
+        cells = GridCells.Fixed(8),
+        modifier = modifier
+    ) {
+        items(task.letters) { letter ->
+            VariantCell(letter) {
+                actioner(PuzzleAction.ChoseLetter(letter.char))
+            }
+        }
+    }
+}
+
+@Composable
+private fun AnswerLetters(modifier: Modifier, task: Puzzle.Task, actioner: (PuzzleAction) -> Unit) {
+    Box(modifier = modifier) {
+        LazyRow(
+            modifier = Modifier
+                .wrapContentSize()
+                .align(Center)
+        ) {
+
+            itemsIndexed(task.correctAnswer) { index, answer ->
+                answer.forEachIndexed { index, answer ->
+                    AnswerCell(task.myAnswer.getOrNull(index)){
+                        actioner(PuzzleAction.RemoveLetter(task.myAnswer.getOrNull(index)))
                     }
+
+                    Spacer(modifier = Modifier.size(5.dp))
+                }
+
+                if (index > 0) {
+                    Spacer(modifier = Modifier.size(20.dp))
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun AnswerIncorrect() {
+    Box(Modifier.fillMaxWidth()) {
+        Row(modifier = Modifier.align(Center)) {
+            Text(
+                text = stringResource(id = R.string.incorrect),
+                style = MaterialTheme.typography.body2
+            )
+            Icon(
+                Icons.Default.HighlightOff,
+                contentDescription = "",
+                tint = Color.Red,
+                modifier = Modifier.size(18.dp)
+            )
+        }
+    }
+}
+
+@Composable
+private fun AnswerCorrect() {
+    Box(Modifier.fillMaxWidth()) {
+        Row(modifier = Modifier.align(Center)) {
+            Text(
+                text = stringResource(id = R.string.correct),
+                style = MaterialTheme.typography.body2
+            )
+            Icon(
+                Icons.Default.CheckCircle,
+                contentDescription = "",
+                tint = Color.Green,
+                modifier = Modifier.size(18.dp)
+            )
+        }
+    }
+}
+
+@Composable
+private fun Task(modifier: Modifier, task: Puzzle.Task) {
+    Box(
+        modifier = modifier
+    ) {
+        Text(
+            text = "1 of 25",
+            modifier = Modifier
+                .align(TopEnd)
+                .padding(8.dp),
+            style = MaterialTheme.typography.caption,
+            fontSize = 16.sp
+        )
+
+        Column(modifier = Modifier.align(Center)) {
+            Text(
+                text = task.clues.first,
+                modifier = Modifier.align(CenterHorizontally),
+                style = MaterialTheme.typography.caption
+            )
+            Text(
+                text = "----OR----",
+                modifier = Modifier.align(CenterHorizontally),
+                style = MaterialTheme.typography.body2,
+                fontSize = 18.sp
+            )
+            Text(
+                text = task.clues.second,
+                modifier = Modifier.align(CenterHorizontally),
+                style = MaterialTheme.typography.caption
+            )
+        }
+
+    }
+}
+
+@Composable
+private fun Toolbar(
+    onBack: () -> Unit,
+    state: PuzzleViewState
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(60.dp)
+    ) {
+        Icon(
+            Icons.Default.ArrowBack,
+            contentDescription = "",
+            modifier = Modifier
+                .size(40.dp)
+                .padding(start = 8.dp)
+                .align(Alignment.CenterVertically)
+                .clickable { onBack() }
+        )
+
+        Text(
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .weight(1f)
+                .padding(start = 16.dp),
+            text = stringResource(
+                id =
+                state.puzzle?.name?.resId ?: R.string.app_name
+            ),
+            style = MaterialTheme.typography.caption
+        )
     }
 }
 

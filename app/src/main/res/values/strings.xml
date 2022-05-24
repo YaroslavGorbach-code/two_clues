@@ -8,6 +8,8 @@
     <string name="check_answer">CHECK ANSWER</string>
     <string name="get_answers">GET ANSWERS BY VIEWING ADS</string>
     <string name="show_answers">SHOW ANSWERS</string>
+    <string name="check">CHECK</string>
+    <string name="reveal_letter">REVEAL LETTER</string>
     <string name="correct_answers">CORRECT ANSWERS</string>
     <string name="congratulations">CONGRATULATIONS</string>
     <string name="you_completed_puzzle">YOU WIN!</string>
