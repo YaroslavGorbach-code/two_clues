@@ -4,13 +4,14 @@ import andersen.two_clues.PUZZLE_NAME_ARG
 import andersen.two_clues.data.common.PuzzleRepo
 import andersen.two_clues.data.common.model.PuzzleName
 import andersen.two_clues.data.puzzle.model.Puzzle
+import andersen.two_clues.data.puzzle.model.getNextOrNull
+import andersen.two_clues.data.puzzle.model.use
 import andersen.two_clues.feature.puzzle.model.PuzzleAction
 import andersen.two_clues.feature.puzzle.model.PuzzleUiMessage
 import andersen.two_clues.feature.puzzle.model.PuzzleViewState
 import andersen.two_clues.utills.AdManager
 import andersen.two_clues.utills.UiMessage
 import andersen.two_clues.utills.UiMessageManager
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -73,14 +74,11 @@ class PuzzleViewModel @Inject constructor(
                 when (action) {
                     PuzzleAction.CheckAnswer -> {
                         currentTask.value?.let { task ->
-                            val isAnswerCorrect: Boolean =
-                                task.correctAnswerString.lowercase() == task.myAnswer.map { it.char }
-                                    .joinToString("").lowercase()
-                            isAnswerCorrectVisible.emit(isAnswerCorrect)
-                            isAnswerIncorrectVisible.emit(isAnswerCorrect.not())
+                            isAnswerCorrectVisible.emit(task.checkAnswer())
+                            isAnswerIncorrectVisible.emit(task.checkAnswer().not())
 
-                            if (isAnswerCorrect && isCurrentTskLast()){
-                                    uiMessageManager.emitMessage(UiMessage(PuzzleUiMessage.ShowWinDialog))
+                            if (task.checkAnswer() && isCurrentTskLast()) {
+                                uiMessageManager.emitMessage(UiMessage(PuzzleUiMessage.ShowWinDialog))
                             }
                         }
                     }
@@ -104,13 +102,7 @@ class PuzzleViewModel @Inject constructor(
                                 task
                             } else {
                                 task?.copy(
-                                    letters = task.letters.map { letter ->
-                                        if (letter.id == action.letter.id) {
-                                            letter.copy(isUsed = true)
-                                        } else {
-                                            letter
-                                        }
-                                    },
+                                    letters = task.letters.use(action.letter.id, true),
                                     myAnswer = task.myAnswer.toMutableList()
                                         .apply { add(action.letter) }
                                 )
@@ -121,13 +113,7 @@ class PuzzleViewModel @Inject constructor(
                         action.letter?.let { currentLetter ->
                             currentTask.update { task ->
                                 task?.copy(
-                                    letters = task.letters.map { letter ->
-                                        if (currentLetter.id == letter.id) {
-                                            letter.copy(isUsed = false)
-                                        } else {
-                                            letter
-                                        }
-                                    },
+                                    letters = task.letters.use(action.letter.id, false),
                                     myAnswer = task.myAnswer.toMutableList()
                                         .apply { remove(currentLetter) }
                                 )
@@ -135,13 +121,11 @@ class PuzzleViewModel @Inject constructor(
                         }
                     }
                     PuzzleAction.NextTask -> {
-                        val indexOfCurrent =
-                            puzzle.value?.task?.indexOfFirst { it.correctAnswerString == currentTask.value?.correctAnswerString }
-
-                        puzzle.value?.task?.getOrNull(indexOfCurrent?.inc() ?: -1)?.let { task ->
-                            currentTask.emit(task)
+                        currentTask.value?.let { currentTask ->
+                            puzzle.value?.task?.getNextOrNull(currentTask)?.let { task ->
+                                this@PuzzleViewModel.currentTask.emit(task)
+                            }
                         }
-
                         isAnswerCorrectVisible.emit(false)
                     }
                     PuzzleAction.RevealLetter -> {
