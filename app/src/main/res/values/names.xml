@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="letter_a_name">Two Clues: \'A\' Words</string>
+    <string name="letter_b_name">Two Clues: \'B\' Words</string>
 </resources>

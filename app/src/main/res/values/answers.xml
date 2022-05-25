@@ -24,4 +24,30 @@
         <item>Announcer</item>
         <item>Angela</item>
     </string-array>
+
+    <string-array name="task_answers_letter_b">
+        <item>Bear</item>
+        <item>Baron</item>
+        <item>Bread</item>
+        <item>Bobby</item>
+        <item>Bird
+</item>
+        <item>Boxer</item>
+        <item>Bank</item>
+        <item>Babe</item>
+        <item>Brothers</item>
+        <item>Blue</item>
+        <item>Beer</item>
+        <item>Bed</item>
+        <item>Bean</item>
+        <item>Bay</item>
+        <item>Ballerina</item>
+        <item>Butler</item>
+        <item>Boogie</item>
+        <item>Betty</item>
+        <item>Battery</item>
+        <item>Bridge</item>
+        <item>Butterfly</item>
+        <item>Brett</item>
+    </string-array>
 </resources>

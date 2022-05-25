@@ -155,15 +155,15 @@ internal fun PuzzlesUi(
                     }, showUnavailableDialog = {
                         actioner(PuzzlesAction.ShowPuzzleUnAvailableDialog(item.name))
                     })
-
-                    Spacer(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(2.dp)
-                            .background(color = getOnBackgroundColor())
-                    )
                 }
             }
+
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(2.dp)
+                    .background(color = getOnBackgroundColor())
+            )
         }
 
     }
