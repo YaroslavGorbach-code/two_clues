@@ -2,4 +2,5 @@
 <resources>
     <string name="letter_a_description">Can you name the words that begin with A based on the two clues?</string>
     <string name="letter_b_description">Can you name the words that begin with B based on the two clues?</string>
+    <string name="letter_c_description">Can you name the words that begin with C based on the two clues?</string>
 </resources>

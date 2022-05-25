@@ -30,8 +30,7 @@
         <item>Baron</item>
         <item>Bread</item>
         <item>Bobby</item>
-        <item>Bird
-</item>
+        <item>Bird</item>
         <item>Boxer</item>
         <item>Bank</item>
         <item>Babe</item>
@@ -49,5 +48,30 @@
         <item>Bridge</item>
         <item>Butterfly</item>
         <item>Brett</item>
+    </string-array>
+
+    <string-array name="task_answers_letter_c">
+        <item>Captain</item>
+        <item>Capital</item>
+        <item>Chuck</item>
+        <item>Colonel</item>
+        <item>Clown</item>
+        <item>Curtis</item>
+        <item>Charlotte</item>
+        <item>Cat</item>
+        <item>Count</item>
+        <item>Chef</item>
+        <item>Cracker</item>
+        <item>Choreographer</item>
+        <item>Clock</item>
+        <item>Card</item>
+        <item>Chimpanzee</item>
+        <item>Cheese</item>
+        <item>Cartoon</item>
+        <item>Carpet</item>
+        <item>Casino</item>
+        <item>Colony</item>
+        <item>Cake</item>
+        <item>Carol</item>
     </string-array>
 </resources>

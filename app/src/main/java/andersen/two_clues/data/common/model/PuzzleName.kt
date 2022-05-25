@@ -4,7 +4,8 @@ import andersen.two_clues.R
 
 enum class PuzzleName(val resId: Int) {
     LETTER_A(R.string.letter_a_name),
-    LETTER_B(R.string.letter_b_name)
+    LETTER_B(R.string.letter_b_name),
+    LETTER_C(R.string.letter_c_name)
 }
 
 fun PuzzleName.findNext(): PuzzleName? {

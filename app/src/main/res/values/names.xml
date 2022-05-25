@@ -2,4 +2,5 @@
 <resources>
     <string name="letter_a_name">Two Clues: \'A\' Words</string>
     <string name="letter_b_name">Two Clues: \'B\' Words</string>
+    <string name="letter_c_name">Two Clues: \'C\' Words</string>
 </resources>

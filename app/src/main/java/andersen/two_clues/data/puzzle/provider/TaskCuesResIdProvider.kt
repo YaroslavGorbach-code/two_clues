@@ -8,6 +8,7 @@ class TaskCuesResIdProvider {
         return when (name) {
             PuzzleName.LETTER_A -> R.string.task_letter_a
             PuzzleName.LETTER_B -> R.string.task_letter_b
+            PuzzleName.LETTER_C -> R.string.task_letter_c
         }
     }
 }
