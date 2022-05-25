@@ -13,7 +13,8 @@ data class Puzzle(
         val correctAnswerString: String,
         val maxMyAnswerSize: Int = correctAnswer.map { it.size }.sumOf { it },
         val myAnswer: List<Letter> = ArrayList(maxMyAnswerSize),
-        val letters: List<Letter>
+        val letters: List<Letter>,
+        val orderNumber: Int,
     ) {
         data class Letter(val id: Int, val char: Char, val isUsed: Boolean = false)
     }

@@ -109,7 +109,9 @@ internal fun PuzzleUi(
                         .weight(0.5f)
                         .padding(16.dp)
                         .background(getOnBackgroundColor(), RoundedCornerShape(4)),
-                    task
+                    task,
+                    currentTaskNumber = task.orderNumber,
+                    maxTasksNumber = state.maxTasks
                 )
             }
 
@@ -278,12 +280,17 @@ private fun AnswerCorrect() {
 }
 
 @Composable
-private fun Task(modifier: Modifier, task: Puzzle.Task) {
+private fun Task(
+    modifier: Modifier,
+    task: Puzzle.Task,
+    maxTasksNumber: Int,
+    currentTaskNumber: Int
+) {
     Box(
         modifier = modifier
     ) {
         Text(
-            text = "1 of 25",
+            text = "$currentTaskNumber of $maxTasksNumber",
             modifier = Modifier
                 .align(TopEnd)
                 .padding(8.dp),

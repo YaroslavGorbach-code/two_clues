@@ -31,13 +31,13 @@ class PuzzleViewModel @Inject constructor(
 
     private val pendingActions = MutableSharedFlow<PuzzleAction>()
 
-    private var puzzle: MutableStateFlow<Puzzle?> = MutableStateFlow(null)
+    private val puzzle: MutableStateFlow<Puzzle?> = MutableStateFlow(null)
 
-    private var currentTask: MutableStateFlow<Puzzle.Task?> = MutableStateFlow(null)
+    private val currentTask: MutableStateFlow<Puzzle.Task?> = MutableStateFlow(null)
 
     private var isAnswerCorrectVisible: MutableStateFlow<Boolean> = MutableStateFlow(false)
 
-    private var isAnswerIncorrectVisible: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    private val isAnswerIncorrectVisible: MutableStateFlow<Boolean> = MutableStateFlow(false)
 
     private val uiMessageManager: UiMessageManager<PuzzleUiMessage> = UiMessageManager()
 
@@ -53,8 +53,8 @@ class PuzzleViewModel @Inject constructor(
             message = message,
             currentTask = currentTask,
             isAnswerCorrectVisible = isAnswerCorrectVisible,
-            isAnswerInCorrectVisible = isAnswerIncorrectVisible
-        )
+            isAnswerInCorrectVisible = isAnswerIncorrectVisible,
+            )
     }.stateIn(
         scope = viewModelScope,
         started = WhileSubscribed(5000),
@@ -78,6 +78,10 @@ class PuzzleViewModel @Inject constructor(
                                     .joinToString("").lowercase()
                             isAnswerCorrectVisible.emit(isAnswerCorrect)
                             isAnswerIncorrectVisible.emit(isAnswerCorrect.not())
+
+                            if (isAnswerCorrect && isCurrentTskLast()){
+                                    uiMessageManager.emitMessage(UiMessage(PuzzleUiMessage.ShowWinDialog))
+                            }
                         }
                     }
 
@@ -131,7 +135,14 @@ class PuzzleViewModel @Inject constructor(
                         }
                     }
                     PuzzleAction.NextTask -> {
+                        val indexOfCurrent =
+                            puzzle.value?.task?.indexOfFirst { it.correctAnswerString == currentTask.value?.correctAnswerString }
 
+                        puzzle.value?.task?.getOrNull(indexOfCurrent?.inc() ?: -1)?.let { task ->
+                            currentTask.emit(task)
+                        }
+
+                        isAnswerCorrectVisible.emit(false)
                     }
                     PuzzleAction.RevealLetter -> {
 
@@ -140,6 +151,8 @@ class PuzzleViewModel @Inject constructor(
             }
         }
     }
+
+    private fun isCurrentTskLast() = currentTask.value?.orderNumber == puzzle.value?.task?.size
 
     private suspend fun loadPuzzle(name: PuzzleName) {
         puzzleRepo.getPuzzle(name)

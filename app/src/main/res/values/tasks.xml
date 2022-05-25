@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="task_letter_a">
-        London Heathrow or O\'Hare International
-        | Schweitzer or Finney
-        | Apt/Pat/Tap or Arm/Mar/Ram
-        | Acute or obtuse
-        | McIntosh or Granny Smith
-        | Le Corbusier or Frank Lloyd Wright
-        | Madison Square Garden or Staples Center
-        | Ant or Sandler
-        | Buzz Aldrin or Yang Liwei
-        | A123 Main Street or www.sporcle.com
-        | Poor Richard\'s or Farmer\'s
-        | \'Star Spangled Banner\' or \'God Save the Queen\'
-        | John Wilkes Booth or Sirhan Sirhan
-        | Jemima or Bee
-        | USA or Etc.
-        | Leibovitz or Lennox
-        | John Updike or Margaret Atwood
-        | 747 or DC-10
-        | Ant-Man or Hawkeye
-        | Ian Darke or Brent Musburger
-        | Merkel or Lansbury
+        London Heathrow &amp;&amp; O\'Hare International
+        | Schweitzer &amp;&amp; Finney
+        | Apt/Pat/Tap &amp;&amp; Arm/Mar/Ram
+        | Acute &amp;&amp; obtuse
+        | McIntosh &amp;&amp; Granny Smith
+        | Le Corbusier &amp;&amp; Frank Lloyd Wright
+        | A6 &amp;&amp; TT Coupe
+        | Madison Square Garden &amp;&amp; Staples Center
+        | Ant &amp;&amp; Sandler
+        | Buzz Aldrin &amp;&amp; Yang Liwei
+        | 123 Main Street &amp;&amp; www.sporcle.com
+        | Poor Richard\'s &amp;&amp; Farmer\'s
+        | \'Star Spangled Banner\' &amp;&amp; \'God Save the Queen\'
+        | John Wilkes Booth &amp;&amp; Sirhan Sirhan
+        | Jemima &amp;&amp; Bee
+        | USA &amp;&amp; Etc.
+        | Leibovitz &amp;&amp; Lennox
+        | John Updike &amp;&amp; Margaret Atwood
+        | 747 &amp;&amp; DC-10
+        | Ant-Man &amp;&amp; Hawkeye
+        | Ian Darke &amp;&amp; Brent Musburger
+        | Merkel &amp;&amp; Lansbury
     </string>
 </resources>

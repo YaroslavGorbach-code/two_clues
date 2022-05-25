@@ -11,6 +11,8 @@ data class PuzzleViewState(
     val message: UiMessage<PuzzleUiMessage>?,
     val isAnswerCorrectVisible: Boolean = false,
     val isAnswerInCorrectVisible: Boolean = false,
+    val maxTasks: Int = puzzle?.task?.size ?: 0,
+    val currentTaskNumber: Int = currentTask?.orderNumber ?: 1,
 ) {
 
     companion object {

@@ -14,12 +14,13 @@ class TasksFactory(
 
     fun create(name: PuzzleName): List<Puzzle.Task> {
         return taskCluesProvider.provider(name)
-            .zip(puzzleTaskAnswersProvider.provide(name)).map { clueAndAnswer ->
+            .zip(puzzleTaskAnswersProvider.provide(name)).mapIndexed { index, clueAndAnswer ->
                 Puzzle.Task(
                     clues = clueAndAnswer.first,
                     correctAnswer = clueAndAnswer.second.map { it.toList() },
                     correctAnswerString = clueAndAnswer.second.joinToString(separator = ""),
-                    letters = puzzleAnswerToLettersMapper.map(clueAndAnswer.second)
+                    letters = puzzleAnswerToLettersMapper.map(clueAndAnswer.second),
+                    orderNumber = index.inc()
                 )
             }
     }
