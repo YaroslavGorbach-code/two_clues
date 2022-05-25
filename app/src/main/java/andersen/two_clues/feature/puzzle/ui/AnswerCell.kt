@@ -1,5 +1,6 @@
 package andersen.two_clues.feature.puzzle.ui
 
+import andersen.two_clues.data.puzzle.model.Puzzle
 import andersen.two_clues.feature.common.ui.theme.getOnBackgroundColor
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -18,7 +19,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun AnswerCell(letter: Char?, onClick: () -> Unit) {
+fun AnswerCell(letter: Puzzle.Task.Letter?, onClick: () -> Unit) {
     Box(
         modifier = Modifier
             .size(30.dp)
@@ -26,7 +27,7 @@ fun AnswerCell(letter: Char?, onClick: () -> Unit) {
             .clickable { onClick() }
 
     ) {
-        letter?.uppercase()?.let { letter ->
+        letter?.char?.uppercase()?.let { letter ->
             Text(
                 text = letter,
                 modifier = Modifier.align(Alignment.Center),

@@ -123,10 +123,12 @@ internal fun PuzzleUi(
                 Column(modifier = Modifier.weight(1f)) {
                     if (state.isAnswerCorrectVisible) {
                         AnswerCorrect()
+                        Spacer(modifier = Modifier.size(8.dp))
                     }
 
                     if (state.isAnswerInCorrectVisible) {
                         AnswerIncorrect()
+                        Spacer(modifier = Modifier.size(8.dp))
                     }
 
                     state.currentTask?.let { task ->
@@ -139,35 +141,55 @@ internal fun PuzzleUi(
                     }
                 }
 
-                BottomButtons(Modifier.padding(16.dp))
+                BottomButtons(Modifier.padding(16.dp), state, actioner)
             }
         }
     }
 }
 
 @Composable
-private fun BottomButtons(modifier: Modifier) {
+private fun BottomButtons(
+    modifier: Modifier,
+    state: PuzzleViewState,
+    actioner: (PuzzleAction) -> Unit
+) {
+
     Column(modifier = modifier) {
-        Button(
-            shape = RoundedCornerShape(8),
-            onClick = { }, modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = getOnBackgroundHinted())
-        ) {
+        if (state.isAnswerCorrectVisible) {
+            Button(
+                shape = RoundedCornerShape(8),
+                onClick = { actioner(PuzzleAction.NextTask) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = getOnBackgroundColorLight())
+            ) {
+                Text(text = stringResource(id = R.string.continuee))
+            }
 
-        }
+        } else {
+            Button(
+                shape = RoundedCornerShape(8),
+                onClick = { actioner(PuzzleAction.CheckAnswer) }, modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = getOnBackgroundHinted())
+            ) {
+                Text(text = stringResource(id = R.string.check))
+            }
 
-        Spacer(modifier = Modifier.size(8.dp))
+            Spacer(modifier = Modifier.size(8.dp))
 
-        Button(
-            shape = RoundedCornerShape(8),
-            onClick = { },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = getOnBackgroundColorLight())
-        ) {
+            Button(
+                shape = RoundedCornerShape(8),
+                onClick = { actioner(PuzzleAction.RevealLetter) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = getOnBackgroundColorLight())
+            ) {
+                Text(text = stringResource(id = R.string.reveal_letter))
+            }
 
         }
         Spacer(modifier = Modifier.size(8.dp))
@@ -187,7 +209,7 @@ private fun VariantLetters(
     ) {
         items(task.letters) { letter ->
             VariantCell(letter) {
-                actioner(PuzzleAction.ChoseLetter(letter.char))
+                actioner(PuzzleAction.ChoseLetter(letter))
             }
         }
     }

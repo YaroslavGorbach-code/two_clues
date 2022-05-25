@@ -27,7 +27,9 @@ fun VariantCell(letter: Puzzle.Task.Letter, onClick: () -> Unit) {
                 color = if (letter.isUsed) getOnBackgroundColorLight() else getOnBackgroundColor(),
                 shape = RoundedCornerShape(3)
             )
-            .clickable { onClick() }
+            .clickable {
+                if (letter.isUsed.not()) onClick()
+            }
 
 
     ) {

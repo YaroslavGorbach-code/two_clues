@@ -15,7 +15,7 @@ fun getOnBackgroundColorLight(isDarkTheme: Boolean = isSystemInDarkTheme()): Col
     return if (isDarkTheme) {
         Color(0xFF555555)
     } else {
-        Color(0xFFF3F3F3)
+        Color(0xFFF8F8F8)
     }
 }
 

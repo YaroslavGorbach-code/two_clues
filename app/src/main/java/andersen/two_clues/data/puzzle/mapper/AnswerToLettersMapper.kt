@@ -17,9 +17,9 @@ class AnswerToLettersMapper() {
         return buildList {
             repeat(DEFAULT_LETTERS_SIZE) {
                 answerLetters.poll()?.let { char ->
-                    add(Puzzle.Task.Letter(char = char))
+                    add(Puzzle.Task.Letter(char = char, id = it))
                 } ?: run {
-                    add(Puzzle.Task.Letter(char = requireNotNull(alphabetLetters.poll())))
+                    add(Puzzle.Task.Letter(char = requireNotNull(alphabetLetters.poll()), id = it))
                 }
             }
         }.shuffled()

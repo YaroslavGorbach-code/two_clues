@@ -10,6 +10,7 @@ import andersen.two_clues.feature.puzzle.model.PuzzleViewState
 import andersen.two_clues.utills.AdManager
 import andersen.two_clues.utills.UiMessage
 import andersen.two_clues.utills.UiMessageManager
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -34,17 +35,25 @@ class PuzzleViewModel @Inject constructor(
 
     private var currentTask: MutableStateFlow<Puzzle.Task?> = MutableStateFlow(null)
 
+    private var isAnswerCorrectVisible: MutableStateFlow<Boolean> = MutableStateFlow(false)
+
+    private var isAnswerIncorrectVisible: MutableStateFlow<Boolean> = MutableStateFlow(false)
+
     private val uiMessageManager: UiMessageManager<PuzzleUiMessage> = UiMessageManager()
 
     val state: StateFlow<PuzzleViewState> = combine(
         puzzle,
         currentTask,
         uiMessageManager.message,
-    ) { puzzle, currentTask, message ->
+        isAnswerCorrectVisible,
+        isAnswerIncorrectVisible,
+    ) { puzzle, currentTask, message, isAnswerCorrectVisible, isAnswerIncorrectVisible ->
         PuzzleViewState(
             puzzle = puzzle,
             message = message,
-            currentTask = currentTask
+            currentTask = currentTask,
+            isAnswerCorrectVisible = isAnswerCorrectVisible,
+            isAnswerInCorrectVisible = isAnswerIncorrectVisible
         )
     }.stateIn(
         scope = viewModelScope,
@@ -62,9 +71,14 @@ class PuzzleViewModel @Inject constructor(
         viewModelScope.launch {
             pendingActions.collect { action ->
                 when (action) {
-
                     PuzzleAction.CheckAnswer -> {
-
+                        currentTask.value?.let { task ->
+                            val isAnswerCorrect: Boolean =
+                                task.correctAnswerString.lowercase() == task.myAnswer.map { it.char }
+                                    .joinToString("").lowercase()
+                            isAnswerCorrectVisible.emit(isAnswerCorrect)
+                            isAnswerIncorrectVisible.emit(isAnswerCorrect.not())
+                        }
                     }
 
                     is PuzzleAction.RequestShowRewordAd -> {
@@ -86,21 +100,41 @@ class PuzzleViewModel @Inject constructor(
                                 task
                             } else {
                                 task?.copy(
+                                    letters = task.letters.map { letter ->
+                                        if (letter.id == action.letter.id) {
+                                            letter.copy(isUsed = true)
+                                        } else {
+                                            letter
+                                        }
+                                    },
                                     myAnswer = task.myAnswer.toMutableList()
-                                        .apply { add(action.char) }
+                                        .apply { add(action.letter) }
                                 )
                             }
                         }
                     }
                     is PuzzleAction.RemoveLetter -> {
-                        action.char?.let { char ->
+                        action.letter?.let { currentLetter ->
                             currentTask.update { task ->
                                 task?.copy(
+                                    letters = task.letters.map { letter ->
+                                        if (currentLetter.id == letter.id) {
+                                            letter.copy(isUsed = false)
+                                        } else {
+                                            letter
+                                        }
+                                    },
                                     myAnswer = task.myAnswer.toMutableList()
-                                        .apply { remove(char) }
+                                        .apply { remove(currentLetter) }
                                 )
                             }
                         }
+                    }
+                    PuzzleAction.NextTask -> {
+
+                    }
+                    PuzzleAction.RevealLetter -> {
+
                     }
                 }
             }

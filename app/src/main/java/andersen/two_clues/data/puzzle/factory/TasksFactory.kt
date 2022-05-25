@@ -18,6 +18,7 @@ class TasksFactory(
                 Puzzle.Task(
                     clues = clueAndAnswer.first,
                     correctAnswer = clueAndAnswer.second.map { it.toList() },
+                    correctAnswerString = clueAndAnswer.second.joinToString(separator = ""),
                     letters = puzzleAnswerToLettersMapper.map(clueAndAnswer.second)
                 )
             }
