@@ -13,7 +13,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import kotlinx.coroutines.InternalCoroutinesApi
 
-
 const val PUZZLE_NAME_ARG = "PUZZLE_NAME_ARG"
 
 sealed class Screen(val route: String) {

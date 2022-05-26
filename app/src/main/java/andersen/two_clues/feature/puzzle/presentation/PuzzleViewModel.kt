@@ -93,7 +93,11 @@ class PuzzleViewModel @Inject constructor(
                         adManager.showRewardAd(
                             activity = action.activity,
                         ) {
-
+                            currentTask.update { task ->
+                                task?.copy(myAnswer = task.correctAnswerString.mapIndexed { index, char ->
+                                    Puzzle.Task.Letter(id = index, char)
+                                })
+                            }
                         }
                     }
                     is PuzzleAction.ChoseLetter -> {
@@ -128,8 +132,8 @@ class PuzzleViewModel @Inject constructor(
                         }
                         isAnswerCorrectVisible.emit(false)
                     }
-                    PuzzleAction.RevealLetter -> {
-
+                    PuzzleAction.RevealWord -> {
+                        uiMessageManager.emitMessage(UiMessage(PuzzleUiMessage.ShowAdWarningDialog))
                     }
                 }
             }

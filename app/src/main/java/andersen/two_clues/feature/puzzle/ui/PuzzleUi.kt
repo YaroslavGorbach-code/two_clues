@@ -80,9 +80,6 @@ internal fun PuzzleUi(
 
     state.message?.let { message ->
         when (val m = message.message) {
-            PuzzleUiMessage.ShowPuzzleErrorDialog -> {
-                ShowFailDialog(clearMessage, message)
-            }
             PuzzleUiMessage.ShowWinDialog -> {
                 ShowWinDialog(clearMessage, message, onBack)
             }
@@ -94,6 +91,9 @@ internal fun PuzzleUi(
                     )
                 )
                 clearMessage(message.id)
+            }
+            PuzzleUiMessage.ShowAdWarningDialog -> {
+                ShowAdWarningDialog(clearMessage, message, actioner)
             }
         }
     }
@@ -184,13 +184,13 @@ private fun BottomButtons(
 
             Button(
                 shape = RoundedCornerShape(8),
-                onClick = { actioner(PuzzleAction.RevealLetter) },
+                onClick = { actioner(PuzzleAction.RevealWord) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),
                 colors = ButtonDefaults.buttonColors(backgroundColor = getOnBackgroundColorLight())
             ) {
-                Text(text = stringResource(id = R.string.reveal_letter))
+                Text(text = stringResource(id = R.string.reveal_word))
             }
 
         }
@@ -396,39 +396,36 @@ private fun ShowWinDialog(
 }
 
 @Composable
-private fun ShowFailDialog(
+private fun ShowAdWarningDialog(
     clearMessage: (id: Long) -> Unit,
-    message: UiMessage<PuzzleUiMessage>
+    message: UiMessage<PuzzleUiMessage>,
+    actioner: (PuzzleAction) -> Unit
 ) {
     AlertDialog(onDismissRequest = {
         clearMessage(message.id)
-    }, buttons = {}, title = {
-
-        Box(modifier = Modifier.fillMaxWidth()) {
-            Image(
-                modifier = Modifier
-                    .size(100.dp)
-                    .align(Center),
-                imageVector = ImageVector.vectorResource(id = R.drawable.ic_wrong),
-                contentDescription = ""
-            )
+    }, buttons = {
+        Button(
+            shape = RoundedCornerShape(8),
+            onClick = {
+                actioner(PuzzleAction.RequestShowRewordAd)
+                clearMessage(message.id)
+            }, modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp)
+                .padding(8.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = getOnBackgroundHinted())
+        ) {
+            Text(text = stringResource(id = R.string.watch_ads))
         }
 
-    }, text = {
+    }, title = {}, text = {
         Column(modifier = Modifier.fillMaxWidth()) {
             Text(
                 modifier = Modifier.align(CenterHorizontally),
-                text = stringResource(id = R.string.oops),
-                style = MaterialTheme.typography.caption,
+                text = stringResource(id = R.string.reveal_letter_message),
+                style = MaterialTheme.typography.body2,
                 textAlign = TextAlign.Center,
-                fontSize = 34.sp
-            )
-
-            Text(
-                modifier = Modifier.align(CenterHorizontally),
-                text = stringResource(id = R.string.check_answers),
-                fontSize = 13.sp,
-                textAlign = TextAlign.Center
+                fontSize = 24.sp
             )
         }
     })

@@ -6,7 +6,7 @@ import android.app.Activity
 sealed class PuzzleAction {
     object CheckAnswer : PuzzleAction()
     object NextTask: PuzzleAction()
-    object RevealLetter: PuzzleAction()
+    object RevealWord: PuzzleAction()
     object RequestShowRewordAd : PuzzleAction()
     class ChoseLetter(val letter: Puzzle.Task.Letter): PuzzleAction()
     class RemoveLetter(val letter: Puzzle.Task.Letter?): PuzzleAction()
