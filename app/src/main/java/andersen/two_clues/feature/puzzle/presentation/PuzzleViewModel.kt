@@ -79,6 +79,7 @@ class PuzzleViewModel @Inject constructor(
 
                             if (task.checkAnswer() && isCurrentTskLast()) {
                                 uiMessageManager.emitMessage(UiMessage(PuzzleUiMessage.ShowWinDialog))
+                                puzzleRepo.finishPuzzle(name = puzzleName)
                             }
                         }
                     }
