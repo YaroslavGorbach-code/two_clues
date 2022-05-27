@@ -222,4 +222,29 @@
         <item>Lake</item>
         <item>Luggage</item>
     </string-array>
+
+    <string-array name="task_answers_letter_m">
+        <item>Math</item>
+        <item>Mick</item>
+        <item>Monkey</item>
+        <item>Marx Brother</item>
+        <item>Monica</item>
+        <item>Madame</item>
+        <item>Mount</item>
+        <item>Malcolm</item>
+        <item>Melon</item>
+        <item>Malt liquor</item>
+        <item>Magazine</item>
+        <item>Mascot</item>
+        <item>Meter</item>
+        <item>Magician</item>
+        <item>Milk</item>
+        <item>Month</item>
+        <item>Maid</item>
+        <item>Mime</item>
+        <item>Mortgage</item>
+        <item>Map</item>
+        <item>Mother</item>
+        <item>Mikhail</item>
+    </string-array>
 </resources>
