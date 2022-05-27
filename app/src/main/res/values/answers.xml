@@ -172,4 +172,29 @@
         <item>General</item>
         <item>Galaxy</item>
     </string-array>
+
+    <string-array name="task_answers_letter_h">
+        <item>Hairstyle</item>
+        <item>Horse</item>
+        <item>Hat</item>
+        <item>Harold</item>
+        <item>Helicopter</item>
+        <item>Hill</item>
+        <item>Hammer</item>
+        <item>Hank</item>
+        <item>Herb</item>
+        <item>Hitchcock</item>
+        <item>Hobbit</item>
+        <item>Hamburger</item>
+        <item>Hotel</item>
+        <item>Hospital</item>
+        <item>Hot dog</item>
+        <item>Honda</item>
+        <item>Harriet</item>
+        <item>Hook</item>
+        <item>Hose</item>
+        <item>Holiday</item>
+        <item>Hernia</item>
+        <item>Hamilton</item>
+    </string-array>
 </resources>

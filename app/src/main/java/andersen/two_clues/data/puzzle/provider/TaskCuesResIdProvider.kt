@@ -13,6 +13,7 @@ class TaskCuesResIdProvider {
             PuzzleName.LETTER_E -> R.string.task_letter_e
             PuzzleName.LETTER_F -> R.string.task_letter_f
             PuzzleName.LETTER_G -> R.string.task_letter_g
+            PuzzleName.LETTER_H -> R.string.task_letter_h
         }
     }
 }
