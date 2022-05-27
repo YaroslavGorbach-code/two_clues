@@ -16,6 +16,7 @@ class PuzzleDescriptionProvider(private val context: Context) {
             PuzzleName.LETTER_F -> context.resources.getString(R.string.letter_f_description)
             PuzzleName.LETTER_G -> context.resources.getString(R.string.letter_g_description)
             PuzzleName.LETTER_H -> context.resources.getString(R.string.letter_h_description)
+            PuzzleName.LETTER_L -> context.resources.getString(R.string.letter_l_description)
         }
     }
 }

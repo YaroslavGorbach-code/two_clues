@@ -197,4 +197,29 @@
         <item>Hernia</item>
         <item>Hamilton</item>
     </string-array>
+
+    <string-array name="task_answers_letter_l">
+        <item>Lawyer</item>
+        <item>Lady</item>
+        <item>Language</item>
+        <item>Lee</item>
+        <item>Lion</item>
+        <item>Ladder</item>
+        <item>Letter</item>
+        <item>Lucy</item>
+        <item>License</item>
+        <item>Loch</item>
+        <item>Lord</item>
+        <item>Lamp</item>
+        <item>Lance</item>
+        <item>Lotion</item>
+        <item>Leonardo</item>
+        <item>Lock</item>
+        <item>Lou</item>
+        <item>Lindsay</item>
+        <item>Lettuce</item>
+        <item>Larry</item>
+        <item>Lake</item>
+        <item>Luggage</item>
+    </string-array>
 </resources>

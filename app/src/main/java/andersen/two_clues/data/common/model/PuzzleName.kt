@@ -11,6 +11,7 @@ enum class PuzzleName(val resId: Int) {
     LETTER_F(R.string.letter_f_name),
     LETTER_G(R.string.letter_g_name),
     LETTER_H(R.string.letter_h_name),
+    LETTER_L(R.string.letter_l_name),
 }
 
 fun PuzzleName.findNext(): PuzzleName? {
