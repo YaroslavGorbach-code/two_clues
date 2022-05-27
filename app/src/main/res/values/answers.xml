@@ -122,4 +122,29 @@
         <item>Emperor</item>
         <item>Elf</item>
     </string-array>
+
+    <string-array name="task_answers_letter_f">
+        <item>Fred</item>
+        <item>Frog</item>
+        <item>Fruit</item>
+        <item>Fran</item>
+        <item>Ford</item>
+        <item>Fish</item>
+        <item>Fairy</item>
+        <item>Fence</item>
+        <item>Finger</item>
+        <item>Farmer</item>
+        <item>Fly</item>
+        <item>Forest</item>
+        <item>Field</item>
+        <item>Floor</item>
+        <item>Flower</item>
+        <item>Fries</item>
+        <item>Fitzgerald</item>
+        <item>Fox</item>
+        <item>Fear</item>
+        <item>Friar</item>
+        <item>Flu</item>
+        <item>Fannie</item>
+    </string-array>
 </resources>

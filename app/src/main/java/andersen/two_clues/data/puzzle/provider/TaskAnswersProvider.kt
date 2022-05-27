@@ -30,6 +30,10 @@ class TaskAnswersProvider(private val context: Context) {
             PuzzleName.LETTER_E ->  context.resources.getStringArray(
                 R.array.task_answers_letter_e
             ).toList().map { it.split(WORD_SPLIT_SYMBOL) }
+
+            PuzzleName.LETTER_F -> context.resources.getStringArray(
+                R.array.task_answers_letter_f
+            ).toList().map { it.split(WORD_SPLIT_SYMBOL) }
         }
     }
 }
