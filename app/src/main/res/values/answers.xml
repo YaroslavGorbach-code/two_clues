@@ -74,4 +74,29 @@
         <item>Cake</item>
         <item>Carol</item>
     </string-array>
+
+    <string-array name="task_answers_letter_d">
+        <item>Dog</item>
+        <item>Douglas</item>
+        <item>Dragon</item>
+        <item>Doctor</item>
+        <item>Detective</item>
+        <item>Dress</item>
+        <item>Dodge</item>
+        <item>Duck</item>
+        <item>Dip</item>
+        <item>Dive</item>
+        <item>Drum</item>
+        <item>Dirk</item>
+        <item>Dinosaur</item>
+        <item>Diane</item>
+        <item>Dance</item>
+        <item>Deer</item>
+        <item>Duke</item>
+        <item>Duo</item>
+        <item>Dorothy</item>
+        <item>Dessert</item>
+        <item>Doll</item>
+        <item>Davis</item>
+    </string-array>
 </resources>
