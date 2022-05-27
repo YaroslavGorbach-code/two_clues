@@ -6,7 +6,7 @@ import android.content.Context
 
 class TaskAnswersProvider(private val context: Context) {
     companion object {
-        private const val WORD_SPLIT_SYMBOL = "|"
+        private const val WORD_SPLIT_SYMBOL = " "
     }
 
     fun provide(name: PuzzleName): List<List<String>> {
