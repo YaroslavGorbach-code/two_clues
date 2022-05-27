@@ -247,4 +247,29 @@
         <item>Mother</item>
         <item>Mikhail</item>
     </string-array>
+
+    <string-array name="task_answers_letter_n">
+        <item>Nut</item>
+        <item>Needle</item>
+        <item>Nurse</item>
+        <item>Nicki</item>
+        <item>Nanny</item>
+        <item>Nickel</item>
+        <item>Newspaper</item>
+        <item>Noodle</item>
+        <item>Norman</item>
+        <item>Novel</item>
+        <item>Ned</item>
+        <item>Nemo</item>
+        <item>Number</item>
+        <item>Nymph</item>
+        <item>Nail</item>
+        <item>Nose</item>
+        <item>Naomi</item>
+        <item>Nation</item>
+        <item>Nun</item>
+        <item>Network</item>
+        <item>Neil</item>
+        <item>Nelson</item>
+    </string-array>
 </resources>
