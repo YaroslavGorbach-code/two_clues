@@ -147,4 +147,29 @@
         <item>Flu</item>
         <item>Fannie</item>
     </string-array>
+
+    <string-array name="task_answers_letter_g">
+        <item>Grape</item>
+        <item>Grace</item>
+        <item>Gorilla</item>
+        <item>Gear</item>
+        <item>Geoffrey</item>
+        <item>Gandhi</item>
+        <item>Ghost</item>
+        <item>Grade</item>
+        <item>Gland</item>
+        <item>Grass</item>
+        <item>Golfer</item>
+        <item>Guitar</item>
+        <item>Guitar</item>
+        <item>Gang</item>
+        <item>Garden</item>
+        <item>Gin</item>
+        <item>Glue</item>
+        <item>God</item>
+        <item>Gum</item>
+        <item>Gertrude</item>
+        <item>General</item>
+        <item>Galaxy</item>
+    </string-array>
 </resources>
