@@ -99,4 +99,27 @@
         <item>Doll</item>
         <item>Davis</item>
     </string-array>
+
+    <string-array name="task_answers_letter_e">
+        <item>Edgar</item>
+        <item>Element</item>
+        <item>Eagle</item>
+        <item>Elephant</item>
+        <item>Encyclopedia</item>
+        <item>Explorer</item>
+        <item>Emotion</item>
+        <item>Ellen</item>
+        <item>Expletive</item>
+        <item>Exterminator</item>
+        <item>Egg</item>
+        <item>Elvis</item>
+        <item>Equinox</item>
+        <item>Economist</item>
+        <item>Editor</item>
+        <item>Evans</item>
+        <item>Elizabeth</item>
+        <item>Envelope</item>
+        <item>Emperor</item>
+        <item>Elf</item>
+    </string-array>
 </resources>
