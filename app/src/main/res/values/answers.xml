@@ -297,4 +297,29 @@
         <item>Owl</item>
         <item>Omar</item>
     </string-array>
+
+    <string-array name="task_answers_letter_p">
+        <item>Pablo</item>
+        <item>Pablo</item>
+        <item>Pablo</item>
+        <item>Pablo</item>
+        <item>Parenthesis</item>
+        <item>Princess</item>
+        <item>Pen</item>
+        <item>President</item>
+        <item>Prison</item>
+        <item>Philosopher</item>
+        <item>Park</item>
+        <item>Piano</item>
+        <item>Palindrome</item>
+        <item>Perfume</item>
+        <item>Planet</item>
+        <item>Pig</item>
+        <item>Playwright</item>
+        <item>Pickle</item>
+        <item>Painting</item>
+        <item>Pear</item>
+        <item>Pie</item>
+        <item>Palace</item>
+    </string-array>
 </resources>
