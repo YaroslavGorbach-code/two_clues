@@ -272,4 +272,29 @@
         <item>Neil</item>
         <item>Nelson</item>
     </string-array>
+
+    <string-array name="task_answers_letter_o">
+        <item>Olympics</item>
+        <item>Ocean</item>
+        <item>Orange</item>
+        <item>Oven</item>
+        <item>Oil</item>
+        <item>Otto</item>
+        <item>Opera</item>
+        <item>Orville</item>
+        <item>Odds</item>
+        <item>Offer</item>
+        <item>Olive</item>
+        <item>Owen</item>
+        <item>Onion</item>
+        <item>Open</item>
+        <item>Oreo</item>
+        <item>Omelette</item>
+        <item>Orson</item>
+        <item>Opel</item>
+        <item>O\'Neal</item>
+        <item>Ounce</item>
+        <item>Owl</item>
+        <item>Omar</item>
+    </string-array>
 </resources>

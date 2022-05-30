@@ -51,6 +51,10 @@ class TaskAnswersProvider(private val context: Context) {
             PuzzleName.LETTER_N -> context.resources.getStringArray(
                 R.array.task_answers_letter_n
             ).toList()
+
+            PuzzleName.LETTER_O -> context.resources.getStringArray(
+                R.array.task_answers_letter_o
+            ).toList()
         }
     }
 }
