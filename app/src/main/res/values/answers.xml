@@ -347,4 +347,29 @@
         <item>Resin</item>
         <item>Rachel</item>
     </string-array>
+
+    <string-array name="task_answers_letter_s">
+        <item>Soap</item>
+        <item>Soap</item>
+        <item>Saint</item>
+        <item>School</item>
+        <item>Spider</item>
+        <item>Sauce</item>
+        <item>Screwdriver</item>
+        <item>Sea</item>
+        <item>Sandwich</item>
+        <item>Stanley</item>
+        <item>State</item>
+        <item>Shark</item>
+        <item>Salt</item>
+        <item>Simpson</item>
+        <item>Steak</item>
+        <item>Skunk</item>
+        <item>Snake</item>
+        <item>Saw</item>
+        <item>Squirrel</item>
+        <item>Suffix</item>
+        <item>Sergei</item>
+        <item>Salad</item>
+    </string-array>
 </resources>
