@@ -372,4 +372,29 @@
         <item>Sergei</item>
         <item>Salad</item>
     </string-array>
+
+    <string-array name="task_answers_letter_t">
+        <item>Taffy</item>
+        <item>Taylor</item>
+        <item>Tooth</item>
+        <item>Tabloid</item>
+        <item>Temperature</item>
+        <item>Tyson</item>
+        <item>Tide</item>
+        <item>Tomato</item>
+        <item>Tape</item>
+        <item>Tent</item>
+        <item>Tower</item>
+        <item>Trail</item>
+        <item>Train</item>
+        <item>Tire</item>
+        <item>Tammy</item>
+        <item>Tree</item>
+        <item>Triangle</item>
+        <item>Terry</item>
+        <item>Trophy</item>
+        <item>Tiger</item>
+        <item>Tendon</item>
+        <item>Table</item>
+    </string-array>
 </resources>
