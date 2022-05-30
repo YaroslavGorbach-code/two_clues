@@ -322,4 +322,29 @@
         <item>Pie</item>
         <item>Palace</item>
     </string-array>
+
+    <string-array name="task_answers_letter_r">
+        <item>Rabbit</item>
+        <item>Robot</item>
+        <item>Robot</item>
+        <item>Reptile</item>
+        <item>Reef</item>
+        <item>René</item>
+        <item>Ralph</item>
+        <item>Reynolds</item>
+        <item>Ring</item>
+        <item>Radio</item>
+        <item>Record</item>
+        <item>Rhyme</item>
+        <item>Rifle</item>
+        <item>River</item>
+        <item>Road</item>
+        <item>Restaurant</item>
+        <item>Robert</item>
+        <item>Revolution</item>
+        <item>Robinson</item>
+        <item>Roll</item>
+        <item>Resin</item>
+        <item>Rachel</item>
+    </string-array>
 </resources>
