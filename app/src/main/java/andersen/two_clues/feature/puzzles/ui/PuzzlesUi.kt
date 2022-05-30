@@ -103,12 +103,6 @@ internal fun PuzzlesUi(
                 )
                 clearMessage(message.id)
             }
-            PuzzlesUiMessage.ShowHelpDialog -> {
-                ShowHelpDialogDialog(
-                    clearMessage = clearMessage,
-                    message = message,
-                )
-            }
         }
     }
 
@@ -122,17 +116,6 @@ internal fun PuzzlesUi(
                     modifier = Modifier
                         .padding(horizontal = 8.dp)
                         .weight(1f)
-                )
-
-                Icon(
-                    Icons.Default.HelpOutline,
-                    contentDescription = "",
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .size(30.dp)
-                        .clickable {
-                            actioner(PuzzlesAction.ShowHelpDialog)
-                        }
                 )
             }
 
@@ -165,7 +148,6 @@ internal fun PuzzlesUi(
                     .background(color = getOnBackgroundColor())
             )
         }
-
     }
 }
 
@@ -225,42 +207,6 @@ private fun ShowUnavailableDialog(
                 fontSize = 12.sp,
                 textAlign = TextAlign.Center
             )
-        }
-    })
-}
-
-@Composable
-private fun ShowHelpDialogDialog(
-    clearMessage: (id: Long) -> Unit,
-    message: UiMessage<PuzzlesUiMessage>
-) {
-    val scroll = rememberScrollState(0)
-
-    AlertDialog(onDismissRequest = {
-        clearMessage(message.id)
-    }, buttons = {
-        Column(modifier = Modifier.fillMaxWidth()) {
-            Button(
-                onClick = {
-
-                    clearMessage(message.id)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-                    .align(CenterHorizontally),
-            ) {
-
-            }
-        }
-
-    }, title = {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(scroll)
-        ) {
-
         }
     })
 }
