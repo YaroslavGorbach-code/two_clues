@@ -17,8 +17,10 @@ class TasksFactory(
             .zip(puzzleTaskAnswersProvider.provide(name)).mapIndexed { index, clueAndAnswer ->
                 Puzzle.Task(
                     clues = clueAndAnswer.first,
-                    correctAnswer = clueAndAnswer.second.map { it.toList() },
-                    correctAnswerString = clueAndAnswer.second.joinToString(separator = ""),
+                    correctAnswer = clueAndAnswer.second.mapIndexed { indexLetter, char ->
+                        Puzzle.Task.Letter(indexLetter, char)
+                    },
+                    correctAnswerString = clueAndAnswer.second,
                     letters = puzzleAnswerToLettersMapper.map(clueAndAnswer.second),
                     orderNumber = index.inc()
                 )

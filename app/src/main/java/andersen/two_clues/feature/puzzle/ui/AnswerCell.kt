@@ -27,9 +27,10 @@ fun AnswerCell(letter: Puzzle.Task.Letter?, onClick: () -> Unit) {
             .clickable { onClick() }
 
     ) {
-        letter?.char?.uppercase()?.let { letter ->
+
+        letter?.let { letter ->
             Text(
-                text = letter,
+                text = letter.char.uppercase(),
                 modifier = Modifier.align(Alignment.Center),
                 style = MaterialTheme.typography.body2
             )

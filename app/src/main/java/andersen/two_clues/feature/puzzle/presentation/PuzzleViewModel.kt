@@ -12,6 +12,7 @@ import andersen.two_clues.feature.puzzle.model.PuzzleViewState
 import andersen.two_clues.utills.AdManager
 import andersen.two_clues.utills.UiMessage
 import andersen.two_clues.utills.UiMessageManager
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -49,13 +50,14 @@ class PuzzleViewModel @Inject constructor(
         isAnswerCorrectVisible,
         isAnswerIncorrectVisible,
     ) { puzzle, currentTask, message, isAnswerCorrectVisible, isAnswerIncorrectVisible ->
+
         PuzzleViewState(
             puzzle = puzzle,
             message = message,
             currentTask = currentTask,
             isAnswerCorrectVisible = isAnswerCorrectVisible,
             isAnswerInCorrectVisible = isAnswerIncorrectVisible,
-            )
+        )
     }.stateIn(
         scope = viewModelScope,
         started = WhileSubscribed(5000),
@@ -109,7 +111,20 @@ class PuzzleViewModel @Inject constructor(
                                 task?.copy(
                                     letters = task.letters.use(action.letter.id, true),
                                     myAnswer = task.myAnswer.toMutableList()
-                                        .apply { add(action.letter) }
+                                        .apply {
+                                            add(action.letter)
+
+                                            val nextIndex = size.inc()
+                                            val spaces =
+                                                task.correctAnswer.filter { it.char.isWhitespace() }
+                                            val indexes =
+                                                spaces.map { task.correctAnswer.indexOf(it) }
+                                            if (indexes.any { it == nextIndex }) {
+                                                add(
+                                                    Puzzle.Task.Letter(0, " ".toCharArray().first())
+                                                )
+                                            }
+                                        }
                                 )
                             }
                         }

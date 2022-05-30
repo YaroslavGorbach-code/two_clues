@@ -10,8 +10,9 @@ class AnswerToLettersMapper() {
         private val ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     }
 
-    fun map(answer: List<String>): List<Puzzle.Task.Letter> {
-        val answerLetters: Queue<Char> = ArrayDeque(answer.joinToString(separator = "").toList())
+    fun map(answer: String): List<Puzzle.Task.Letter> {
+        val answerLetters: Queue<Char> =
+            ArrayDeque(answer.toList().filterNot { it.toString() == " " })
         val alphabetLetters: Queue<Char> = ArrayDeque(ALPHABET.toList())
 
         return buildList {

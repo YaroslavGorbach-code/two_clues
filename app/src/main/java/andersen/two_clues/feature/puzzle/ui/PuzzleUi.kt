@@ -11,6 +11,7 @@ import andersen.two_clues.feature.puzzle.model.PuzzleViewState
 import andersen.two_clues.feature.puzzle.presentation.PuzzleViewModel
 import andersen.two_clues.utills.UiMessage
 import andersen.two_clues.utills.findActivity
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -135,6 +136,7 @@ internal fun PuzzleUi(
 
                     state.currentTask?.let { task ->
                         AnswerLetters(Modifier.fillMaxWidth(), task, actioner)
+
                         VariantLetters(
                             Modifier.padding(top = 16.dp, start = 8.dp, end = 8.dp),
                             task,
@@ -226,17 +228,24 @@ private fun AnswerLetters(modifier: Modifier, task: Puzzle.Task, actioner: (Puzz
                 .align(Center)
         ) {
 
-            itemsIndexed(task.correctAnswer) { index, answer ->
-                answer.forEachIndexed { index, answer ->
-                    AnswerCell(task.myAnswer.getOrNull(index)){
-                        actioner(PuzzleAction.RemoveLetter(task.myAnswer.getOrNull(index)))
-                    }
+            itemsIndexed(task.correctAnswer) { index, correctAnswer ->
+
+                if (correctAnswer.char.toString() == " ") {
+                    Spacer(modifier = Modifier.size(20.dp))
+                } else {
+                    val myAnswer = task.myAnswer.getOrNull(index)
+
+                    Log.i("dsdssd", "index $index")
+                    Log.i("dsdssd", "myAnswer ${task.myAnswer}")
+
+                    Log.i("dsdssd", "my answer ${myAnswer?.char}")
+                    Log.i("dsdssd", "correct answer ${correctAnswer.char}")
+
+                    AnswerCell(myAnswer, onClick = {
+                        actioner(PuzzleAction.RemoveLetter(myAnswer))
+                    })
 
                     Spacer(modifier = Modifier.size(5.dp))
-                }
-
-                if (index > 0) {
-                    Spacer(modifier = Modifier.size(20.dp))
                 }
             }
         }

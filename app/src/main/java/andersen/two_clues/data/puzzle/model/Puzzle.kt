@@ -9,22 +9,28 @@ data class Puzzle(
 
     data class Task(
         val clues: Pair<String, String>,
-        val correctAnswer: List<List<Char>>,
+        val correctAnswer: List<Letter>,
         val correctAnswerString: String,
-        val maxMyAnswerSize: Int = correctAnswer.map { it.size }.sumOf { it },
-        val myAnswer: List<Letter> = ArrayList(maxMyAnswerSize),
+        val maxMyAnswerSize: Int = correctAnswer.size,
+        var myAnswer: List<Letter> = ArrayList(),
         val letters: List<Letter>,
         val orderNumber: Int,
     ) {
+
         fun checkAnswer(): Boolean {
-            return correctAnswerString.lowercase() == myAnswer.map { it.char }
+            return correctAnswerString.lowercase().trim() == myAnswer.map { it.char }
                 .joinToString("").lowercase()
         }
 
-        data class Letter(val id: Int, val char: Char, val isUsed: Boolean = false)
+        data class Letter(
+            val id: Int,
+            val char: Char,
+            val isUsed: Boolean = false,
+            val isDisplayed: Boolean = false
+        )
+
     }
 }
-
 
 fun List<Puzzle.Task.Letter>.use(id: Int, isUsed: Boolean): List<Puzzle.Task.Letter> {
     return map { letter ->
