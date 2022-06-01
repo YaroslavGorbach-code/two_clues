@@ -15,7 +15,7 @@ import javax.inject.Inject
 class AdManager @Inject constructor(private val app: Application) {
 
     companion object {
-        private const val REWARD_AD_ID = "ca-app-pub-6043694180023070/3431927013"
+        private const val REWARD_AD_ID = "ca-app-pub-6043694180023070/4415514236"
 
         private const val TEST_REWARD_AD_ID = "ca-app-pub-3940256099942544/5224354917"
     }
@@ -25,7 +25,7 @@ class AdManager @Inject constructor(private val app: Application) {
     fun loadRewordAd() {
         val adRequest: AdRequest = AdManagerAdRequest.Builder().build()
 
-        RewardedAd.load(app, TEST_REWARD_AD_ID,
+        RewardedAd.load(app, REWARD_AD_ID,
             adRequest, object : RewardedAdLoadCallback() {
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
                     rewordAd = null
